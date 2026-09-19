@@ -2,6 +2,7 @@
 
 import argparse
 import sys
+from pathlib import Path
 
 from .config import MODEL_REVISION, GenerationSettings, RuntimeSettings
 from .demo import DemoBackend
@@ -51,18 +52,23 @@ def main(argv=None) -> int:
             local_files_only=args.local_files_only,
             revision=args.revision,
         )
+        output_dir = Path(args.output).expanduser()
+        # Reject an unwritable or non-directory destination before loading a large model.
+        output_dir.mkdir(parents=True, exist_ok=True)
         service = GenerationService(DemoBackend if args.demo else lambda: DiffusersBackend(runtime))
         if args.demo:
             print(
                 "Procedural demo: no AI inference; "
                 "the prompt is recorded but does not affect pixels."
             )
+        elif args.local_files_only:
+            print("Loading cached SDXL files (downloads disabled).")
         else:
             print(
                 "Loading local SDXL runtime. "
                 "The first run may download several GB of model weights."
             )
-        run_dir = service.generate(settings).save(args.output)
+        run_dir = service.generate(settings).save(output_dir)
         print(f"Saved {run_dir / 'image.png'}")
         print(f"Manifest {run_dir / 'manifest.json'}")
         return 0

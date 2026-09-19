@@ -1,15 +1,11 @@
 """Runs with the optional UI extra, and never imports model dependencies."""
 
-import importlib.util
 import os
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
 
-@unittest.skipUnless(
-    importlib.util.find_spec("streamlit"), "Install the ui extra for UI smoke test"
-)
 class UiTests(unittest.TestCase):
     def test_demo_generation_and_validation(self):
         from streamlit.testing.v1 import AppTest
