@@ -1,0 +1,12 @@
+.venv/
+.tooling/
+__pycache__/
+*.py[cod]
+.ruff_cache/
+.coverage
+dist/
+outputs/
+.DS_Store
+.env
+.env.*
+!.env.example

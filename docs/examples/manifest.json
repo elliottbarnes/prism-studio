@@ -1,0 +1,46 @@
+{
+  "backend": {
+    "description": "Procedural preview. No AI model was loaded; prompt does not affect pixels.",
+    "device": "cpu",
+    "kind": "demo",
+    "model_id": null,
+    "precision": "not-applicable",
+    "revision": null
+  },
+  "created_at": "2026-09-19T01:04:35.398897+00:00",
+  "image": {
+    "file": "image.png",
+    "sha256": "4d761274737798be523b475b5c9c2caf98f18c014e8e1afb70657c5bb8de7707"
+  },
+  "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+  "reproducibility": "Seeds aid repeatability; hardware and library changes may alter pixels.",
+  "run_id": "78f858ef79e54f12bf6a82e17670257f",
+  "schema_version": 1,
+  "settings": {
+    "guidance": 7.0,
+    "height": 512,
+    "negative_prompt": "",
+    "prompt": "Procedural workflow preview (not AI inference)",
+    "seed": 42,
+    "steps": 30,
+    "width": 512
+  },
+  "timing_seconds": {
+    "load": 0.0,
+    "render_and_encode": 0.0539,
+    "total": 0.0539
+  },
+  "versions": {
+    "accelerate": "not-installed",
+    "diffusers": "not-installed",
+    "huggingface-hub": "not-installed",
+    "invisible-watermark": "not-installed",
+    "pillow": "12.3.0",
+    "prism-studio": "1.0.0",
+    "python": "3.13.15",
+    "safetensors": "not-installed",
+    "streamlit": "1.64.0",
+    "torch": "not-installed",
+    "transformers": "not-installed"
+  }
+}
