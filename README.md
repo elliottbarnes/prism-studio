@@ -4,6 +4,11 @@ A local image-generation workbench that keeps the experiment with the image.
 
 Prism Studio turns a small Stable Diffusion demo into a packaged application: a shared SDXL backend, command-line and Streamlit interfaces, deliberate device selection, reproducible dependencies, and a JSON record of every run. Built by Elliott Barnes.
 
+[Open the interactive browser workbench](https://elliottbarnes.github.io/prism-studio/).
+Change a seed and canvas size, render a procedural SVG, inspect/download its JSON manifest,
+and copy a validated command for the Python demo. The page runs entirely in the browser.
+It does not load SDXL, send prompts, or request credentials.
+
 ## Try the workflow without a GPU
 
 Requires Python 3.11–3.13 and [uv](https://docs.astral.sh/uv/getting-started/installation/). The committed lock was generated with uv 0.12.17. These commands install the UI but **do not install torch or download model weights**:
@@ -107,3 +112,19 @@ uv.lock            resolved dependency environment
 This is the continuation of `text_to_image_w_stable_diffusion`, renamed to Prism Studio. Existing Git history, MIT license and the original generated sample remain intact. The original `generate_image(prompt)` import still returns a Pillow image through the shared backend. Running that script now accepts the same arguments as `prism`, avoiding the previous implicit overwrite of `generated_image.png`.
 
 Primary documentation was reviewed on September 18, 2026. Future upgrades should update the lock, rerun tests, and compare a fixed-seed hardware run before changing the baseline.
+
+## Browser example
+
+Serve `demo/` with `python -m http.server 8000 --bind 127.0.0.1 --directory demo`,
+then open `http://127.0.0.1:8000`. Node 22+ runs the dependency-free checks:
+`node --test tests/web/*.test.mjs`.
+
+The browser's versioned `lcg-circles-v1` renderer is intentionally separate from the
+Python Pillow demo; matching seeds do not imply pixel-identical output between them.
+Shared acceptance fixtures check that both runtimes enforce the same generation
+settings. Prompt, negative prompt, steps, and guidance are metadata in procedural
+mode. Exported files always describe the last rendered run. No inference accuracy,
+model quality, or GPU integration is established by this example.
+
+GitHub Actions runs the existing Python checks and the browser checks before
+publishing only `demo/` to GitHub Pages on a successful main-branch push.
