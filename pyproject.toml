@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11,<3.14"
 license = "MIT"
 authors = [{name = "Elliott Barnes"}]
-dependencies = ["pillow>=11,<13"]
+dependencies = ["pillow>=13,<14"]
 
 [project.optional-dependencies]
 inference = [
@@ -21,7 +21,7 @@ inference = [
   "safetensors>=0.5,<1",
   "invisible-watermark>=0.2,<1",
 ]
-ui = ["streamlit==1.64.0"]
+ui = ["streamlit==1.66.1"]
 
 [project.scripts]
 prism = "prism_studio.cli:main"
